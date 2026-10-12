@@ -1,0 +1,644 @@
+/* Importa il font Patua One da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2, .game-title, .modal-title, .full-card-title {
+    font-family: 'Patua One', cursive, serif;
+    letter-spacing: 0.5px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+h1 {
+    color: #ffcc00;
+    margin: 0;
+    font-size: 32px;
+}
+.subtitle {
+    color: #aaa;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+/* SCHERMATE */
+.screen {
+    display: none; /* Nasconde tutte le schermate di default */
+}
+.screen.active {
+    display: block; /* Mostra solo la schermata che ha la classe active */
+}
+
+/* MENU SELEZIONE GIOCHI */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.game-card {
+    background: #2a2a2a;
+    border: 2px solid #444;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffcc00;
+}
+.game-title {
+    font-size: 22px;
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+.game-desc {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+.btn-play {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-play:hover {
+    background-color: #2ea043;
+}
+.disabled-card {
+    opacity: 0.6;
+    border-color: #333 !important;
+}
+.disabled-card:hover {
+    transform: none !important;
+}
+
+/* Stili per il logo nel Menu Principale */
+.main-logo {
+    max-width: 300px; /* Larghezza massima del logo nel menu */
+    height: auto; /* Mantiene le proporzioni */
+    margin: 0 auto 10px auto; /* Centra il logo con spazio sotto */
+    display: block; /* Necessario per il centering con margin: auto */
+}
+
+/* Stili per il logo nella Dashboard di Gioco (Top Bar) */
+.dashboard-logo {
+    max-width: 150px; /* Più piccolo per la barra superiore */
+    height: auto;
+    margin: 0 auto; /* Centra il logo nella top bar */
+}
+
+/* Aggiornamento per il font: mantieni Patua One solo per le altre scritte se vuoi */
+h2, .game-title, .modal-title, .full-card-title {
+    font-family: 'Patua One', cursive, serif;
+    letter-spacing: 0.5px;
+}
+
+
+/* LAYOUT DASHBOARD HERE TO SLAY */
+.top-bar {
+    display: flex;
+    flex-direction: column; /* Dispone gli elementi uno sotto l'altro */
+    align-items: flex-start; /* Allinea a sinistra (o metti 'center' se preferisci al centro) */
+    gap: 10px; /* Spazio tra il pulsante e il titolo */
+    max-width: 1200px;
+    margin: 0 auto 20px auto;
+}
+.btn-back {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn-back:hover {
+    background-color: #555;
+}
+
+/* --- NUOVO LAYOUT A 3 COLONNE --- */
+.dashboard-layout {
+    display: flex;
+    gap: 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.col-left {
+    flex: 1;
+    min-width: 220px;
+}
+.col-center {
+    flex: 2;
+    min-width: 380px;
+}
+.col-sidebar {
+    flex: 1;
+    min-width: 260px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+}
+
+/* --- ACCORDION (MENÙ A TENDINA) --- */
+.accordion-item {
+    margin-bottom: 15px;
+    padding: 10px !important;
+}
+.accordion-header {
+    background: transparent;
+    border: none;
+    color: #ffcc00;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+    text-align: left;
+}
+.accordion-header:hover {
+    background: rgba(255, 204, 0, 0.1);
+    border-radius: 6px;
+}
+.accordion-content {
+    padding-top: 10px;
+    border-top: 1px solid #333;
+    margin-top: 8px;
+}
+
+/* --- TRACKER MODIFICATORI --- */
+.mod-display-container {
+    background: #111;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #444;
+    margin-bottom: 12px;
+}
+.mod-label {
+    font-size: 12px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+.mod-btn-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.btn-mod {
+    padding: 8px 4px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+.btn-mod:active {
+    transform: scale(0.95);
+}
+.btn-mod.pos {
+    background-color: #27ae60;
+    color: white;
+}
+.btn-mod.pos:hover { background-color: #2ecc71; }
+
+.btn-mod.neg {
+    background-color: #c0392b;
+    color: white;
+}
+.btn-mod.neg:hover { background-color: #e74c3c; }
+
+/* STILI CARDE / CONTATORI */
+.card {
+    background: #2a2a2a;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.card h3 {
+    margin-top: 0;
+    color: #ffcc00;
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+    font-size: 18px;
+}
+.counter-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-align: center;
+    margin: 10px 0;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    margin: 4px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+}
+.btn-action { background-color: #e67e22; }
+.btn-reset { background-color: #c0392b; }
+.btn-add { background-color: #2980b9; }
+
+/* RICERCA CARTE */
+.search-container {
+    position: relative;
+}
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.autocomplete-results {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: #222;
+    border: 1px solid #ffcc00;
+    border-radius: 0 0 6px 6px;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 10;
+}
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+.autocomplete-item:hover {
+    background-color: #333;
+}
+
+/* GRIGLIA CARTE PARTY */
+.party-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+.party-card-item {
+    background-color: #333;
+    border: 2px solid #ffcc00;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s;
+}
+.party-card-item:hover {
+    transform: translateY(-3px);
+}
+.party-card-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #aaa;
+}
+.party-card-name {
+    font-weight: bold;
+    margin-top: 6px;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* MODAL */
+.modal {
+    display: none; /* Nascosto di default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    border: 2px solid #ffcc00;
+    text-align: center;
+}
+.modal-title { font-size: 22px; color: #ffcc00; }
+.modal-type { font-size: 12px; color: #aaa; margin-bottom: 15px; text-transform: uppercase; }
+.modal-effect {
+    font-size: 14px; background: #1a1a1a; padding: 12px;
+    border-radius: 6px; text-align: left; line-height: 1.4; margin-bottom: 15px;
+    border: 1px solid #444; white-space: pre-wrap;
+}
+
+/* --- CARTA COMPLETA (ANTEPRIMA E POPUP) --- */
+.full-card-display {
+    background: #222;
+    border: 3px solid #ffcc00;
+    border-radius: 12px;
+    padding: 12px;
+    max-width: 280px;
+    margin: 10px auto;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
+.full-card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+.full-card-title {
+    font-size: 18px;
+    color: #ffcc00;
+    font-weight: bold;
+    margin: 8px 0 2px 0;
+}
+.full-card-type {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+.full-card-effect {
+    font-size: 12px;
+    background: #111;
+    padding: 10px;
+    border-radius: 6px;
+    color: #ddd;
+    text-align: left;
+    line-height: 1.3;
+    border: 1px solid #333;
+}
+
+/* --- MINI CARTA (NEL PARTY IN BASSO) --- */
+.party-card-item {
+    background-color: #2a2a2a;
+    border: 2px solid #555;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s, border-color 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.party-card-item:hover {
+    transform: translateY(-4px);
+    border-color: #ffcc00;
+}
+.party-card-thumb {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.party-card-name {
+    font-weight: bold;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-top: 2px;
+}
+
+/* BORDATURE PER CLASSE (OPZIONALE MA MOLTO BELLO) */
+/* Bordi tematici in base alla classe dell'Eroe/Leader */
+.class-guerriero { border-color: #e74c3c !important; }
+.class-ladro { border-color: #9b59b6 !important; }
+.class-mago { border-color: #3498db !important; }
+.class-cacciatore { border-color: #2ecc71 !important; }
+.class-bardo { border-color: #f1c40f !important; }
+.class-guardiano { border-color: #e67e22 !important; }
+.class-mostro { border-color: #e67e22 !important; }
+
+/* --- SEZIONI PLANCIA DI GIOCO --- */
+.board-section {
+    background: #222;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.section-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffcc00;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- ETICHETTA DI EQUIPAGGIAMENTO SULLE CARTA --- */
+.equipped-badge {
+    font-size: 10px;
+    background: #d35400;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- EFFETTO BRILLANTE (GLOW) COLLEGATO OGGETTO/POSSESSORE --- */
+.card-highlight-glow {
+    box-shadow: 0 0 15px 4px #f1c40f !important;
+    border-color: #f1c40f !important;
+    transform: scale(1.05) translateY(-4px) !important;
+    z-index: 5;
+}
+
+.card-logo {
+    max-width: 180px; /* Imposta la larghezza desiderata per il logo */
+    height: auto;
+    margin: 10px auto 15px auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* --- POP-UP VITTORIA --- */
+.victory-content {
+    background: linear-gradient(135deg, #2c3e50, #1a1a1a) !important;
+    border: 3px solid #f1c40f !important;
+    box-shadow: 0 0 25px rgba(241, 196, 15, 0.6) !important;
+    animation: victoryPop 0.4s ease-out;
+}
+
+@keyframes victoryPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- STILI MEMO ABILITÀ NELLA TENDINA --- */
+#abilities-summary-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.ability-memo-item {
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+.ability-memo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffcc00;
+    margin-bottom: 4px;
+}
+.ability-memo-effect {
+    color: #ccc;
+    font-size: 11px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    background: #111;
+    padding: 6px;
+    border-radius: 4px;
+}
+.btn-ability-toggle {
+    width: 100%;
+    padding: 4px;
+    font-size: 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+.btn-ability-ready {
+    background-color: #27ae60;
+    color: white;
+}
+.btn-ability-ready:hover { background-color: #2ecc71; }
+
+.btn-ability-used {
+    background-color: #555;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+/* --- TITOLI SEZIONI ABILITÀ --- */
+.ability-section-title {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.passive-title {
+    background: rgba(142, 68, 173, 0.2);
+    color: #9b59b6;
+    border-left: 3px solid #9b59b6;
+}
+.active-title {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+    border-left: 3px solid #f1c40f;
+}
+
+/* --- CARTE PASSIVE (STILE DEDICATO CON COLORE X - VIOLA) --- */
+.passive-card-item {
+    background: #1f1a24 !important;
+    border: 1px solid #8e44ad !important;
+}
+.passive-badge {
+    font-size: 9px;
+    background: #8e44ad;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* --- CARTE ATTIVE --- */
+.active-card-item {
+    background: #1a1a1a;
+    border: 1px solid #444;
+}
+
+/* --- PALLINO DI NOTIFICA MOBILE SULL'EROE EQUIPAGGIATO --- */
+.equip-item-dot {
+    color: #e74c3c; /* Rosso notifica */
+    font-size: 14px;
+    margin-left: 6px;
+    vertical-align: middle;
+    animation: pulseDot 1.5s infinite;
+    cursor: help;
+}
+
+@keyframes pulseDot {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Note di promemoria per gli oggetti equipaggiati */
+.equip-reminder-note {
+    font-size: 10px;
+    color: #e67e22;
+    background: rgba(230, 126, 34, 0.1);
+    padding: 4px 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    border-left: 2px solid #e67e22;
+}
+
+/* Apice numerico accanto al pallino in caso di più oggetti */
+.equip-item-dot sup {
+    font-size: 9px;
+    font-weight: bold;
+    margin-left: 1px;
+}
