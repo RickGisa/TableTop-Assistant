@@ -642,3 +642,256 @@ input {
     font-weight: bold;
     margin-left: 1px;
 }
+
+/* ==================== CASTING SHADOWS DASHBOARD ==================== */
+
+.cs-dashboard-layout {
+    display: flex;
+    gap: 15px;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+.cs-main-content {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cs-sidebar-right {
+    flex: 1;
+    min-width: 280px;
+}
+
+.cs-row-top {
+    display: flex;
+    gap: 15px;
+}
+
+.cs-card-pg { flex: 1; min-width: 200px; text-align: center; }
+.cs-card-stats { flex: 1.4; min-width: 260px; }
+
+.cs-char-img {
+    width: 100%;
+    max-height: 230px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 2px solid #8e44ad;
+    margin-top: 8px;
+}
+
+.cs-form-badge {
+    background: #8e44ad;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.cs-btn-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+/* GRIGLIA 3x2 PER INCANTESIMI E COMPANION */
+.cs-grid-3x2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cs-slot-card {
+    background: #18181c;
+    border: 2px dashed #444;
+    border-radius: 8px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+    padding: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.cs-slot-card:hover {
+    border-color: #8e44ad;
+}
+
+.cs-slot-companion {
+    border-color: #f1c40f;
+    background: rgba(241, 196, 15, 0.05);
+}
+
+.cs-memo-box {
+    background: #111115;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #ccc;
+}
+
+.cs-card-fixed-memo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive per schermi più piccoli o tablet */
+@media (max-width: 1024px) {
+    .cs-dashboard-layout {
+        flex-direction: column;
+    }
+    .cs-row-top {
+        flex-direction: column;
+    }
+}
+
+.cs-ap-container button {
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.cs-action-btn {
+    background-color: #2c3e50;
+    border: 1px solid #4a6fa5;
+    color: white;
+    padding: 10px 8px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.cs-action-btn:hover {
+    background-color: #34495e;
+    border-color: #9b59b6;
+}
+
+.action-cost {
+    background: #1a1a1f;
+    color: #ffcc00;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid #444;
+}
+
+/* Stile card interne ai modali di Casting Shadows */
+.cs-modal-item {
+    background: #18181d;
+    border: 1px solid #3a3a46;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+.cs-modal-item:hover {
+    background: #222229;
+    border-color: #9b59b6;
+}
+.cs-modal-item-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffcc00;
+    font-family: 'Patua One', cursive, serif;
+    letter-spacing: 0.5px;
+}
+.cs-modal-item-effect {
+    font-size: 12px;
+    color: #d1d5db;
+    line-height: 1.35;
+    background: #111115;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #282832;
+}
+
+/* Espansione della scheda personaggio */
+.cs-card-pg {
+    flex: 1.2; /* Aumentato il peso della colonna per darle più respiro */
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cs-char-container {
+    box-shadow: inset 0 0 15px rgba(142, 68, 173, 0.3);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.cs-char-container:hover {
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 12px rgba(255, 204, 0, 0.4);
+}
+
+.cs-char-img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover; /* Mantiene la resa perfetta senza deformare l'illustrazione */
+    border-radius: 6px;
+}
+
+/* Stile per il logo della top bar di Casting Shadows */
+.cs-top-logo {
+    max-height: 45px; /* Ingrandisci o rimpicciolisci da qui se preferisci */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); /* Dà risalto al logo */
+}
+
+/* Regolazione per schermi piccoli/mobile */
+@media (max-width: 600px) {
+    .cs-top-logo {
+        max-height: 35px;
+    }
+}
+
+/* Card per la selezione dei giochi nel menu principale */
+.game-select-card {
+    background: #18181d;
+    border: 2px solid #8e44ad;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    max-width: 300px;
+    margin: 10px auto;
+}
+
+.game-select-card:hover {
+    transform: translateY(-4px);
+    border-color: #ffcc00;
+    box-shadow: 0 6px 15px rgba(142, 68, 173, 0.4);
+}
+
+/* Logo all'interno della card del menu */
+.game-select-logo {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
