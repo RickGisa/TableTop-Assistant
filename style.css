@@ -447,13 +447,34 @@ input {
 
 /* BORDATURE PER CLASSE (OPZIONALE MA MOLTO BELLO) */
 /* Bordi tematici in base alla classe dell'Eroe/Leader */
-.class-guerriero { border-color: #e74c3c !important; }
-.class-ladro { border-color: #9b59b6 !important; }
-.class-mago { border-color: #3498db !important; }
-.class-cacciatore { border-color: #2ecc71 !important; }
-.class-bardo { border-color: #f1c40f !important; }
-.class-guardiano { border-color: #e67e22 !important; }
-.class-mostro { border-color: #e67e22 !important; }
+
+.class-bardo { border-color: #c4512e !important; }
+.class-berserker { border-color: #e18333 !important; }
+.class-druido { border-color: #28aa72 !important; }
+.class-guerriero { border-color: #97282c !important; }
+.class-paladino { border-color: #ecac1f !important; }                     
+.class-necromante { border-color: #d31a69 !important; }
+.class-ranger { border-color: #215e3b !important; }
+.class-ladro { border-color: #054f7c !important; }
+.class-combattente { border-color: #5f72a0 !important; }
+.class-mago { border-color: #742e8b !important; }
+
+.class-mostro { border-color: #ca2823 !important; }
+
+/* Oggetti Normali (Blu/Azzurro o Grigio Argento) */
+.class-oggetto { 
+    border-color: #01a3a0 !important; 
+}
+/* Oggetti Maledetti / Cursed (Viola Oscuro o Rosso Sangue) */
+.party-card-item.type-cursed,
+.class-oggetto.type-cursed { 
+    border-color: #a13089 !important; 
+}
+/* Maschere / Mask (Giallo Oro o Rosa Magico) */
+.party-card-item.type-mask,
+.class-oggetto.type-mask { 
+    border-color: #454139 !important; 
+}
 
 /* --- SEZIONI PLANCIA DI GIOCO --- */
 .board-section {
@@ -894,4 +915,60 @@ input {
     max-height: 100px;
     object-fit: contain;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
+/* ==================== EFFETTI GLOW PER SLOT INCANTESIMI E COMPANION ==================== */
+
+/* Transizione morbida per gli slot della griglia */
+.cs-slot-card {
+    transition: border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out, transform 0.15s ease;
+}
+
+/* Glow viola per gli slot degli Incantesimi al passaggio del mouse o al tocco */
+.cs-slot-card:hover {
+    border-color: #9b59b6 !important;
+    box-shadow: 0 0 12px rgba(155, 89, 182, 0.6), inset 0 0 8px rgba(155, 89, 182, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Glow dorato speciale per lo slot del Companion */
+.cs-slot-companion:hover {
+    border-color: #f1c40f !important;
+    box-shadow: 0 0 14px rgba(241, 196, 15, 0.7), inset 0 0 10px rgba(241, 196, 15, 0.3) !important;
+    transform: translateY(-2px);
+}
+
+/* Glow al passaggio del mouse sulle card all'interno del modale di selezione */
+.cs-modal-item:not([data-selectable="false"]):hover {
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+}
+
+/* ==========================================================================
+   PROPORZIONI SPECIALI CARTE HERE TO SLAY (Leader e Mostri - Rapporto 338:583)
+   ========================================================================== */
+
+/* Selettori estesi per coprire tutte le possibili varianti di Party Leader e Mostri */
+.hts-leader-card img,
+.hts-monster-card img,
+.card-party-leader img,
+.card-monster img,
+.class-mostro img,
+.party-card-thumb,
+.full-card-img,
+[data-type="leader"] img,
+[data-type="monster"] img,
+.party-card-item img {
+    aspect-ratio: 338 / 583 !important;
+    object-fit: cover !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Forza la proporzione anche sui contenitori dedicati */
+.hts-leader-slot, 
+.hts-monster-slot,
+.modal-leader-preview,
+.full-card-display {
+    aspect-ratio: 338 / 583;
 }
