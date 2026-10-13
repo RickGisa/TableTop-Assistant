@@ -14,10 +14,18 @@ function searchCard() {
     if (query.length < 2) return;
 
     const currentPartyCardNames = party.map(c => c.name.toLowerCase());
-    const matches = CARDS_DATABASE.filter(c => 
-        c.name.toLowerCase().includes(query) && 
-        !currentPartyCardNames.includes(c.name.toLowerCase())
-    );
+    const hasLeader = party.some(c => c.type.toLowerCase().includes("leader"));
+
+    const matches = CARDS_DATABASE.filter(c => {
+        const matchesName = c.name.toLowerCase().includes(query);
+        const notInParty = !currentPartyCardNames.includes(c.name.toLowerCase());
+        const isLeader = c.type.toLowerCase().includes("leader");
+
+        // Se c'è già un Leader nel party, nasconde gli altri Leader dai risultati
+        if (hasLeader && isLeader) return false;
+
+        return matchesName && notInParty;
+    });
 
     if (matches.length === 0) {
         const item = document.createElement('div');
@@ -85,6 +93,18 @@ function addSelectedCard() {
         alert(`La carta "${selectedCardIndex.name}" è già presente sulla plancia!`);
         return;
     }
+
+    // =========================================================================
+    // 🛑 CONTROLLO LIMITE PARTY LEADER (Max 1 per party)
+    // =========================================================================
+    if (selectedCardIndex.type.toLowerCase().includes("leader")) {
+        const hasLeader = party.some(c => c.type.toLowerCase().includes("leader"));
+        if (hasLeader) {
+            alert("Puoi avere solo 1 Party Leader nel tuo party! Rimuovi quello attuale se desideri cambiarlo.");
+            return; // Blocca l'inserimento
+        }
+    }
+    // =========================================================================
 
     selectedCardIndex.instanceId = 'card_' + Date.now();
 
@@ -170,22 +190,28 @@ function renderParty() {
     }
 }
 
-// --- CREAZIONE CARD ELEMENT ---
-function createCardElement(card) {
-    const cardDiv = document.createElement('div');
-    const activeClass = card.classeOggetto || card.class;
-    const classColor = activeClass ? `class-${activeClass.toLowerCase()}` : '';
+    // --- CREAZIONE CARD ELEMENT (CORRETTO CON SUBTYPE) ---
+    function createCardElement(card) {
+        const cardDiv = document.createElement('div');
     
-    cardDiv.className = `party-card-item ${classColor}`;
-    cardDiv.id = `element_${card.instanceId}`;
+        // Determina la classe principale (es. class-guerriero, class-oggetto)
+        const activeClass = card.classeOggetto || card.class;
+        const classColor = activeClass ? `class-${activeClass.toLowerCase()}` : '';
     
-    let equipBadgeHtml = "";
-    if (card.equippedToId) {
-        const owner = party.find(c => c.instanceId === card.equippedToId);
-        if (owner) {
-            equipBadgeHtml = `<div class="equipped-badge">🎒 a: ${owner.name}</div>`;
-        }
-    }
+        // 🔧 NUOVA RIGA: Determina il subtype se presente (es. type-cursed, type-mask)
+        const subTypeClass = card.subtype ? `type-${card.subtype.toLowerCase()}` : '';
+    
+        // 🔧 AGGIUNTO subTypeClass alla lista delle classi del div
+        cardDiv.className = `party-card-item ${classColor} ${subTypeClass}`.trim();
+        cardDiv.id = `element_${card.instanceId}`;
+
+        let equipBadgeHtml = "";
+            if (card.equippedToId) {
+                const owner = party.find(c => c.instanceId === card.equippedToId);
+                if (owner) {
+                    equipBadgeHtml = `<div class="equipped-badge">🎒 a: ${owner.name}</div>`;
+                }
+            }
 
     cardDiv.innerHTML = `
         <img class="party-card-thumb" src="${card.image}" alt="${card.name}">
